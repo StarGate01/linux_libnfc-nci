@@ -709,6 +709,38 @@ void NfcTag::createNativeNfcTag (tNFA_ACTIVATED& activationData)
 #endif
     setNfcTagUid(tag, activationData);
 
+    for (int i = 0; i < mNumTechList; i++)
+    {
+        if (mTechParams[i].mode == NFC_DISCOVERY_TYPE_POLL_A)
+        {
+            tNFC_RF_PA_PARAMS rf_pa = mTechParams[i].param.pa;
+            tNFC_INTF_PA_ISO_DEP intf_pa = activationData.activate_ntf.intf_param.intf_param.pa_iso;
+            memcpy(tag.param.pa.atqa, rf_pa.sens_res, 2);
+            tag.param.pa.sak = rf_pa.sel_rsp;
+            tag.param.pa.ats_res_len = intf_pa.ats_res_len;
+            memcpy(tag.param.pa.ats_res, intf_pa.ats_res, intf_pa.ats_res_len);
+            tag.param.pa.nad_used = intf_pa.nad_used;
+            tag.param.pa.fwi = intf_pa.fwi;
+            tag.param.pa.sfgi = intf_pa.sfgi;
+            tag.param.pa.his_byte_len = intf_pa.his_byte_len;
+            memcpy(tag.param.pa.his_byte, intf_pa.his_byte, intf_pa.his_byte_len);
+        }
+        else if (mTechParams[i].mode == NFC_DISCOVERY_TYPE_POLL_B)
+        {
+            tNFC_RF_PB_PARAMS rf_pb = mTechParams[i].param.pb;
+            tNFC_INTF_PB_ISO_DEP intf_pb = activationData.activate_ntf.intf_param.intf_param.pb_iso;
+            tag.param.pb.atqb_len = rf_pb.sensb_res_len;
+            memcpy(tag.param.pb.atqb, rf_pb.sensb_res, rf_pb.sensb_res_len);
+            tag.param.pb.attrib_res_len = intf_pb.attrib_res_len;
+            memcpy(tag.param.pb.attrib_res, intf_pb.attrib_res, intf_pb.attrib_res_len);
+            tag.param.pb.hi_info_len = intf_pb.hi_info_len;
+            memcpy(tag.param.pb.hi_info, intf_pb.hi_info, intf_pb.hi_info_len);
+            tag.param.pb.mbli = intf_pb.mbli;
+        }
+    }
+
+    //notify app about this new tag
+    //mNumDiscNtf = 0;
     storeActivationParams();
     nativeNfcTag_onTagArrival(&tag);
     NXPLOG_API_D ("%s: exit", "NfcTag::createNativeNfcTag");

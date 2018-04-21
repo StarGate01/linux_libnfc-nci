@@ -87,6 +87,12 @@ extern "C" {
 #define NFA_PROTOCOL_MIFARE             0x80
 typedef unsigned char tNFC_PROTOCOL;
 
+#define NFC_MAX_ATS_LEN 60
+#define NFC_MAX_HIS_BYTES_LEN 50
+#define NFC_MAX_ATTRIB_LEN 58
+#define NFC_MAX_GEN_BYTES_LEN 48
+#define NFC_MAX_SENSB_RES_LEN 12
+
 /**
  *  \brief setting this flag allows host application ignore
  *  an NDEF check command from reader
@@ -163,6 +169,30 @@ typedef enum {
     HANDOVER_CPS_UNKNOWN = 3,
 }nfc_handover_cps_t;
 
+typedef struct
+{
+    unsigned char atqa[2];
+    unsigned char sak;
+    unsigned char ats_res_len;                /* Length of ATS RES                */
+    unsigned char ats_res[NFC_MAX_ATS_LEN];   /* ATS RES                          */
+    unsigned char nad_used;                   /* NAD is used or not               */
+    unsigned char fwi;                        /* Frame Waiting time Integer       */
+    unsigned char sfgi;                       /* Start-up Frame Guard time Integer*/
+    unsigned char his_byte_len;               /* len of historical bytes          */
+    unsigned char his_byte[NFC_MAX_HIS_BYTES_LEN];/* historical bytes             */
+} tPA_ISO_DEP;
+
+typedef struct
+{
+    unsigned char atqb_len;
+    unsigned char atqb[NFC_MAX_SENSB_RES_LEN];
+    unsigned char attrib_res_len;                /* Length of ATTRIB RES      */
+    unsigned char attrib_res[NFC_MAX_ATTRIB_LEN];/* ATTRIB RES                */
+    unsigned char hi_info_len;                   /* len of Higher layer Info  */
+    unsigned char hi_info[NFC_MAX_GEN_BYTES_LEN];/* Higher layer Info         */
+    unsigned char mbli;                          /* Maximum buffer length.    */
+} tPB_ISO_DEP;
+
 /**
  * \brief NFC tag information structure definition.
  */
@@ -189,6 +219,10 @@ typedef struct
      */
     tNFC_PROTOCOL protocol;
 
+    union {
+        tPA_ISO_DEP pa;
+        tPB_ISO_DEP pb;
+    } param;
 }nfc_tag_info_t;
 
 /**
