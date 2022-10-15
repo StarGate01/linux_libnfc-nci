@@ -21,3 +21,17 @@ R1.0 is the first official release of Linux libnfc-nci stack
 Possible problems, known errors and restrictions of R2.4:
 ---------------------------------------------------------
 LLCP1.3 support requires OpenSSL Cryptography and SSL/TLS Toolkit (version 1.0.1j or later)
+
+Compiling:
+----------
+
+```
+autoheader
+aclocal
+libtoolize
+automake --add-missing
+autoconf
+./configure --enable-debug --prefix=$(pwd)/install/
+make -j$(nproc)
+make install
+```
