@@ -1847,6 +1847,7 @@ tNFC_chipType phNxpNciHal_deriveChipType(uint8_t* msg, uint16_t msg_len)
                 case 0x28 :
                 case 0x48 : //NQ210
                 case 0x88 : //PN7150
+                case 0x68 : //NPC300
                 {
                     nfcChipType = pn548C2;
                     isNxpConfigValid(NXP_CONFIG_TYPE_PN548);
