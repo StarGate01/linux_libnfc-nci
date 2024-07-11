@@ -83,7 +83,7 @@ tNFC_CB nfc_cb;
 UINT8 i2c_fragmentation_enabled = 0xff;
 #if (NFC_RW_ONLY == FALSE)
 #if(NFC_NXP_NOT_OPEN_INCLUDED == TRUE)
-#define NFC_NUM_INTERFACE_MAP   4
+#define NFC_NUM_INTERFACE_MAP   6
 #else
 #define NFC_NUM_INTERFACE_MAP   3
 #endif /* (NFC_NXP_NOT_OPEN_INCLUDED == TRUE) */
@@ -111,16 +111,27 @@ static const tNCI_DISCOVER_MAPS nfc_interface_mapping[NFC_NUM_INTERFACE_MAP] =
 #if(NFC_NXP_NOT_OPEN_INCLUDED == TRUE)
     ,
     {
+        NCI_PROTOCOL_T1T,
+        NCI_INTERFACE_MODE_POLL,
+        NCI_INTERFACE_FRAME
+    }
+    ,
+    {
+        NCI_PROTOCOL_T2T,
+        NCI_INTERFACE_MODE_POLL,
+        NCI_INTERFACE_FRAME
+    }
+    ,
+    {
+        NCI_PROTOCOL_T3T,
+        NCI_INTERFACE_MODE_POLL,
+        NCI_INTERFACE_FRAME
+    }
+    ,
+    {
         NCI_PROTOCOL_MIFARE,
         NCI_INTERFACE_MODE_POLL,
         NCI_INTERFACE_MIFARE
-    }
-    ,
-    /* This mapping is for Felica on DH  */
-    {
-        NCI_PROTOCOL_T3T,
-        NCI_INTERFACE_MODE_LISTEN,
-        NCI_INTERFACE_FRAME
     }
 #endif
 };
