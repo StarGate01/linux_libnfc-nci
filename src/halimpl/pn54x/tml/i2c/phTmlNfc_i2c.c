@@ -228,7 +228,11 @@ void phTmlNfc_i2c_close(void *pDevHandle)
     if ( iInterruptFd ) close(iInterruptFd);
     if ( iI2CFd       ) close(iI2CFd);
 #else
-    if (NULL != pDevHandle) close((intptr_t)pDevHandle);
+    if (NULL != pDevHandle) 
+    {
+        flock((intptr_t)pDevHandle, LOCK_UN);
+        close((intptr_t)pDevHandle);
+    }
 #endif
 
     return;
@@ -295,6 +299,13 @@ NFCSTATUS phTmlNfc_i2c_open_and_configure(pphTmlNfc_Config_t pConfig, void ** pL
     if (nHandle < 0)
     {
         NXPLOG_TML_E("_i2c_open() Failed: retval %x",nHandle);
+        *pLinkHandle = NULL;
+        return NFCSTATUS_INVALID_DEVICE;
+    }
+    if (flock(nHandle, LOCK_EX | LOCK_NB) != 0)
+    {
+        NXPLOG_TML_E("_i2c_open() Failed: Device file is locked by another process");
+        close(nHandle);
         *pLinkHandle = NULL;
         return NFCSTATUS_INVALID_DEVICE;
     }
