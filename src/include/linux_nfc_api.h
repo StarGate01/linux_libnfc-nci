@@ -684,14 +684,14 @@ extern int nfcManager_isNfcActive();
 * \param restart:  indicates if force restart discovery
 * \return 0 if success, otherwise failed.
 */
-extern void nfcManager_enableDiscovery (int technologies_masks,
+extern int nfcManager_enableDiscovery (int technologies_masks,
                         int reader_only_mode, int enable_host_routing, int restart);
 
 /**
 * \brief Stop polling and listening for devices.
 * \return None
 */
-extern void nfcManager_disableDiscovery ();
+extern int nfcManager_disableDiscovery ();
 
 /**
 * \brief Register a tag callback functions.

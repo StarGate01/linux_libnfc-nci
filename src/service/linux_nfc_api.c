@@ -101,16 +101,12 @@ int ndef_createHandoverSelect(nfc_handover_cps_t cps, char *carrier_data_ref,
 
 int nfcTag_isNdef(unsigned int handle, ndef_info_t *info)
 {
-    int ret;
-    ret = nativeNfcTag_checkNdef(handle, info);
-    return ret;
+    return nativeNfcTag_checkNdef(handle, info);
 }
 
 int nfcTag_readNdef(unsigned int handle, unsigned char *ndef_buffer,  unsigned int ndef_buffer_length, nfc_friendly_type_t *friendly_ndef_type)
 {
-    int ret;
-    ret = nativeNfcTag_doReadNdef(handle, ndef_buffer, ndef_buffer_length, friendly_ndef_type);
-    return ret;
+    return nativeNfcTag_doReadNdef(handle, ndef_buffer, ndef_buffer_length, friendly_ndef_type);
 }
 
 int nfcTag_writeNdef(unsigned int handle, unsigned char *ndef_buffer, unsigned int ndef_buffer_length)
@@ -126,76 +122,58 @@ int nfcTag_writeNdef(unsigned int handle, unsigned char *ndef_buffer, unsigned i
 
 int nfcTag_isFormatable(unsigned int handle)
 {
-    int ret;
-    ret = nativeNfcTag_isFormatable(handle);
-    return ret;
+    return nativeNfcTag_isFormatable(handle);
 }
 
 int nfcTag_formatTag(unsigned int handle)
 {
-    int ret;
-    ret = nativeNfcTag_doFormatTag(handle);
-    return ret;
+    return nativeNfcTag_doFormatTag(handle);
 }
 
 int nfcTag_makeReadOnly(unsigned int handle, unsigned char *key, unsigned char key_length)
 {
-    int ret;
-    ret = nativeNfcTag_doMakeReadonly(handle, key, key_length);
-    return ret;
+    return nativeNfcTag_doMakeReadonly(handle, key, key_length);
 }
 
 int nfcTag_switchRF(unsigned int handle, int is_frame_rf)
 {
-    int ret;
-    ret = nativeNfcTag_switchRF(handle, is_frame_rf);
-    return ret;
+    return nativeNfcTag_switchRF(handle, is_frame_rf);
 }
 
 int nfcTag_transceive (unsigned int handle, unsigned char *tx_buffer, int tx_buffer_length, unsigned char* rx_buffer, int rx_buffer_length, unsigned int timeout)
 {
-    int ret;
-    ret = nativeNfcTag_doTransceive(handle, tx_buffer, tx_buffer_length, rx_buffer, rx_buffer_length, timeout);
-    return ret;
+    return nativeNfcTag_doTransceive(handle, tx_buffer, tx_buffer_length, rx_buffer, rx_buffer_length, timeout);
 }
 
 int nfcTag_reconnect ()
 {
-    int ret;
-    ret = nativeNfcTag_doReconnect();
-    return ret;
+    return nativeNfcTag_doReconnect();
 }
 
 int nfcManager_doInitialize ()
 {
-    int ret;
-    ret = nativeNfcManager_doInitialize();
-    return ret;
+    return nativeNfcManager_doInitialize();
 }
 
 int nfcManager_doDeinitialize ()
 {
-    int ret;
-    ret = nativeNfcManager_doDeinitialize();
-    return ret;
+    return nativeNfcManager_doDeinitialize();
 }
 
 int nfcManager_isNfcActive()
 {
-    int ret;
-    ret = nativeNfcManager_isNfcActive();
-    return ret;
+    return nativeNfcManager_isNfcActive();
 }
 
-void nfcManager_enableDiscovery (int technologies_mask,
+int nfcManager_enableDiscovery (int technologies_mask,
                         int reader_only_mode, int enable_host_routing, int restart)
 {
-    nativeNfcManager_enableDiscovery(technologies_mask, reader_only_mode, enable_host_routing, restart);
+    return nativeNfcManager_enableDiscovery(technologies_mask, reader_only_mode, enable_host_routing, restart);
 }
 
-void nfcManager_disableDiscovery ()
+int nfcManager_disableDiscovery ()
 {
-    nativeNfcManager_disableDiscovery();
+    return nativeNfcManager_disableDiscovery();
 }
 
 void nfcManager_registerTagCallback(nfcTagCallback_t *callback)
@@ -317,15 +295,12 @@ int nfcLlcp_ConnLessStartServer(nfcllcpConnlessServerCallback_t *server_callback
 void nfcLlcp_ConnLessStopServer()
 {
     nativeNfcLlcp_ConnLessStopServer();
-
 }
 
 int nfcLlcp_ConnLessSendMessage(unsigned char* msg, unsigned int length)
 {
     return nativeNfcLlcp_ConnLessSendMessage(msg, length);
-
 }
-
 
 int nfcLlcp_ConnLessReceiveMessage(unsigned char* msg, unsigned int *length)
 {
