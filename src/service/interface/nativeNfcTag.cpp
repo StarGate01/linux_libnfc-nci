@@ -149,7 +149,6 @@ static BOOLEAN doDisconnect ();
 static INT32 reSelect (tNFA_INTF_TYPE rfInterface, BOOLEAN fSwitchIfNeeded);
 static BOOLEAN switchRfInterface(tNFA_INTF_TYPE rfInterface);
 static inline void setReconnectState(BOOLEAN flag);
-static INT32 nativeNfcTag_doReconnect ();
 
 extern BOOLEAN       gActivated;
 extern SyncEvent     gDeactivatedEvent;
@@ -1027,7 +1026,7 @@ void nativeNfcTag_doDeactivateStatus (INT32 status)
 ** Returns:         Status code.
 **
 *******************************************************************************/
-static INT32 nativeNfcTag_doReconnect ()
+INT32 nativeNfcTag_doReconnect ()
 {
     NXPLOG_API_D ("%s: enter", __FUNCTION__);
     INT32 retCode = NFA_STATUS_OK;

@@ -93,6 +93,8 @@ extern INT32 nativeNfcTag_switchRF(UINT32 tagHandle, BOOLEAN isFrameRF);
 
 extern INT32 nativeNfcTag_doTransceive (UINT32 handle, UINT8* txBuffer, INT32 txBufferLen, UINT8* rxBuffer, INT32 rxBufferLen, UINT32 timeout);
 
+extern INT32 nativeNfcTag_doReconnect ();
+
 #ifdef __cplusplus
 }
 #endif

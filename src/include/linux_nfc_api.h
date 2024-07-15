@@ -652,7 +652,11 @@ extern int nfcTag_switchRF(unsigned int handle, int is_frame_rf);
 */
 extern int nfcTag_transceive (unsigned int handle, unsigned char *tx_buffer, int tx_buffer_length, unsigned char* rx_buffer, int rx_buffer_length, unsigned int timeout);
 
-
+/**
+* \brief Re-connect to the tag in RF field.
+* \return 0 if success, otherwise failed.
+*/
+extern int nfcTag_reconnect ();
 
 /**
 * \brief initialize nfc stack.

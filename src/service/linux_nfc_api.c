@@ -159,6 +159,13 @@ int nfcTag_transceive (unsigned int handle, unsigned char *tx_buffer, int tx_buf
     return ret;
 }
 
+int nfcTag_reconnect ()
+{
+    int ret;
+    ret = nativeNfcTag_doReconnect();
+    return ret;
+}
+
 int nfcManager_doInitialize ()
 {
     int ret;
