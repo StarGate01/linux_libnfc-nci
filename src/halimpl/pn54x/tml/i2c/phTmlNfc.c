@@ -17,6 +17,8 @@
 /*
  * TML Implementation.
  */
+#define _GNU_SOURCE
+#include <pthread.h>
 
 #include <phTmlNfc.h>
 #include <phOsalNfc_Timer.h>

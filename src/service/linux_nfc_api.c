@@ -304,5 +304,5 @@ int nfcLlcp_ConnLessSendMessage(unsigned char* msg, unsigned int length)
 
 int nfcLlcp_ConnLessReceiveMessage(unsigned char* msg, unsigned int *length)
 {
-    return nativeNfcLlcp_ConnLessReceiveMessage(msg, length);
+    return nativeNfcLlcp_ConnLessReceiveMessage(msg, (UINT32 *)length);
 }

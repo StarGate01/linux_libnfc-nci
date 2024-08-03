@@ -26,6 +26,7 @@
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/select.h>
+#include <sys/file.h>
 #include <errno.h>
 
 #include <linux/i2c-dev.h>

@@ -15,6 +15,7 @@
  */
 
 #ifdef NXP_HW_SELF_TEST
+#define _GNU_SOURCE
 
 #include <phNxpNciHal_SelfTest.h>
 #include <phNxpLog.h>

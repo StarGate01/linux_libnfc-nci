@@ -316,6 +316,7 @@ NFC_API extern void nfc_ncif_proc_data (BT_HDR *p_msg);
 #if(NFC_NXP_NOT_OPEN_INCLUDED == TRUE)
 NFC_API extern tNFC_STATUS nfc_ncif_store_FWVersion(UINT8 * p_buf);
 NFC_API extern BOOLEAN nfa_dm_p2p_prio_logic(UINT8 event, UINT8 *p, UINT8 ntf_rsp);
+NFC_API extern void nfa_dm_p2p_prio_logic_cleanup();
 NFC_API extern void nfc_ncif_update_window (void);
 NFC_API extern void nfa_dm_p2p_timer_event ();
 NFC_API extern void nfc_ncif_empty_cmd_queue ();

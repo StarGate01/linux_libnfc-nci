@@ -90,6 +90,7 @@ static T4T_NDEF_EMU_Callback_t *pT4T_NDEF_EMU_PushCb = NULL;
 void help(int mode);
 int InitEnv();
 int LookForTag(char** args, int args_len, char* tag, char** data, int format);
+void PrintNDEFContent(nfc_tag_info_t* TagInfo, ndef_info_t* NDEFinfo, unsigned char* ndefRaw, unsigned int ndefRawLen);
 /********************************** HCE **********************************/
 static void T4T_NDEF_EMU_FillRsp (unsigned char *pRsp, unsigned short offset, unsigned char length)
 {

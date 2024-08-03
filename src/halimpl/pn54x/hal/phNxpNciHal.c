@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define _GNU_SOURCE
+#include <pthread.h>
 #include <sys/stat.h>
 #include <phNxpNciHal.h>
 #include <phNxpNciHal_ext.h>

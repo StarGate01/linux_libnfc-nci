@@ -62,7 +62,7 @@ static void phNxpLog_SetGlobalLogLevel(void) {
 	unsigned long level = NXPLOG_DEFAULT_LOGLEVEL;
   unsigned long num = 0;
   
-    if (GetNxpNumValue (NXPLOG_DEFAULT_LOGLEVEL, &num, sizeof(num)))
+    if (GetNxpNumValue (NAME_NXPLOG_GLOBAL_LOGLEVEL, &num, sizeof(num)))
     {
         gLog_level.global_log_level = (level > (unsigned char) num) ? level : (unsigned char) num;;
     }
