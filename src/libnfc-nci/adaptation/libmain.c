@@ -41,6 +41,7 @@
 #include <malloc.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <unistd.h>
 #include "buildcfg.h"
 #include "nfa_nv_co.h"
 #include "nci_config.h"

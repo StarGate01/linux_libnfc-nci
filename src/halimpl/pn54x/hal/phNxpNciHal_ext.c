@@ -367,7 +367,7 @@ NFCSTATUS phNxpNciHal_process_ext_rsp (uint8_t *p_ntf, uint16_t *p_len)
         iCoreInitRspLen = *p_len;
         memcpy(bCoreInitRsp, p_ntf, *p_len);
         NXPLOG_NCIHAL_D ("NxpNci> FW Version: %x.%x.%x", p_ntf[len-2], p_ntf[len-1], p_ntf[len]);
-        if(phNxpNciHal_deriveChipType(bCoreInitRsp, iCoreInitRspLen) == pnInvalid)
+        if(phNxpNciHal_deriveChipType((uint8_t*)bCoreInitRsp, iCoreInitRspLen) == pnInvalid)
         {
             status = NFCSTATUS_FAILED;
             NXPLOG_NCIHAL_E ("NxpNci> Invalid NFC Chip");
