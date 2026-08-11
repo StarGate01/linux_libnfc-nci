@@ -19,7 +19,7 @@ AM_CPPFLAGS = \
 	$(INCLUDE_PARAMS) \
 	$(libnfc_nci_linux_la_FLAGS)
 
-AM_LDFLAGS = $(LDFLAGS) -Bstatic 
+AM_LDFLAGS = $(LDFLAGS)
 
 nfcDemoApp_FLAGS = -I$(srcdir)/demoapp -I$(srcdir)/src/include 
 
